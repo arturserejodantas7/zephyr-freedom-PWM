@@ -31,7 +31,7 @@ Antes de iniciar, certifique-se de ter configurado o ambiente seguindo os guias 
 
 **Resultado**: Sucesso. O RTOS gerenciou os tempos de 1s e 2s via k_msleep com precisão.
 
-<img src="evidences/led%20verde.jpeg?raw=true" width="300">
+<img src="evidences/led%20verde.jpeg" width="300">
 
 ---
 
@@ -49,7 +49,7 @@ Descrição: Teste de cor composta para LED laranja.
 
 Resultado: Sucesso. A biblioteca configurou o Duty Cycle corretamente e foi possível usar mais de um LED operando em PWM, ao mesmo tempo.
 
-<img src="evidences/led laranja.jpeg?raw=true" width="300">
+<img src="evidences/led laranja.jpeg" width="300">
 
 ---
 
@@ -95,6 +95,8 @@ O foco é validar se o sinal PWM está saindo corretamente do microcontrolador a
 
 **Resultado**: Sucesso. Torque e rotação máximos atingidos.
 
+<img src="evidences/motor%20independente.gif" width="300">
+
 ---
 
 ## 🏁 4. Integração Final (Controle Digital)
@@ -110,5 +112,13 @@ O foco é validar se o sinal PWM está saindo corretamente do microcontrolador a
 |:---:|:---|:---:|
 | 4.1 | Teste Motor Único | Apenas um motor deve variar velocidade usando um pino PWM. |
 | 4.2 | Teste Bi-Motor | Ambos os motores operando em sincronia para movimento em linha reta. |
+
+**Motor Único**: Resposta linear entre o valor de PWM no código e a rotação da roda.
+
+**Dois Motores**: Movimento sincronizado utilizando os canais 0 e 1 do TPM2 (PTB2 e PTB3).
+
+<img src="evidences/um motor integrado.gif" width="300">
+
+<img src="evidences/dois motores integrados.gif" width="300">
 
 ---
