@@ -27,6 +27,8 @@ Antes de iniciar, certifique-se de ter configurado o ambiente seguindo os guias 
 | 1.1 | LED Verde (1s) | O LED onboard verde deve piscar com intervalo de 1000ms. |
 | 1.2 | LED Verde (2s) | O LED onboard verde deve piscar com intervalo de 2000ms. |
 
+![Exemplo de LED Verde](evidences/led verde.jpeg)
+
 ---
 
 ## 📚 2. Integração de Biblioteca PWM (`pwm_z42`)
