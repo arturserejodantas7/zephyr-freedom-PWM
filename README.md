@@ -27,7 +27,11 @@ Antes de iniciar, certifique-se de ter configurado o ambiente seguindo os guias 
 | 1.1 | LED Verde (1s) | O LED onboard verde deve piscar com intervalo de 1000ms. |
 | 1.2 | LED Verde (2s) | O LED onboard verde deve piscar com intervalo de 2000ms. |
 
-![Exemplo de LED Verde](evidences/led verde.jpeg)
+**Descrição**: Validação do blink básico no LED verde onboard.
+
+**Resultado**: Sucesso. O RTOS gerenciou os tempos de 1s e 2s via k_msleep com precisão.
+
+<img src="evidences/led%20verde.jpeg?raw=true" width="300">
 
 ---
 
@@ -40,6 +44,12 @@ Antes de iniciar, certifique-se de ter configurado o ambiente seguindo os guias 
 | 2.1 | LED Laranja Fixo | O LED RGB deve exibir cor laranja constante (mix de PWM). |
 | 2.2 | LED Laranja Piscante | O sinal PWM deve ser habilitado/desabilitado a cada 1s. |
 | 2.3 | **(Opcional)** LED Externo | LED conectado ao pino escolhido deve variar intensidade via PWM. |
+
+Descrição: Teste de cor composta para LED laranja.
+
+Resultado: Sucesso. A biblioteca configurou o Duty Cycle corretamente e foi possível usar mais de um LED operando em PWM, ao mesmo tempo.
+
+<img src="evidences/led laranja.jpeg?raw=true" width="300">
 
 ---
 
@@ -80,6 +90,10 @@ O foco é validar se o sinal PWM está saindo corretamente do microcontrolador a
 | ID | Teste | Resultado Esperado |
 |:---:|:---|:---|
 | 3.1 | Movimento Independente | Os motores devem girar em velocidade máxima ao receber alimentação. |
+
+**Descrição**: Motores ligados diretamente ao VCC para validar a bateria e o driver L298N de forma independente.
+
+**Resultado**: Sucesso. Torque e rotação máximos atingidos.
 
 ---
 
