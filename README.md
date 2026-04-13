@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # zephyr-freedom-PWM
 Controle de LED e motor usando PWM na placa Freedom com VSCode, Zephyr, MCUXpresso e PlatformIO.
 
@@ -96,3 +97,32 @@ O foco é validar se o sinal PWM está saindo corretamente do microcontrolador a
 | 4.2 | Teste Bi-Motor | Ambos os motores operando em sincronia para movimento em linha reta. |
 
 ---
+=======
+How to build PlatformIO based project
+=====================================
+
+1. [Install PlatformIO Core](https://docs.platformio.org/page/core.html)
+2. Download [development platform with examples](https://github.com/platformio/platform-freescalekinetis/archive/develop.zip)
+3. Extract ZIP archive
+4. Run these commands:
+
+```shell
+# Change directory to example
+$ cd platform-freescalekinetis/examples/zephyr-blink
+
+# Build project
+$ pio run
+
+# Upload firmware
+$ pio run --target upload
+
+# Build specific environment
+$ pio run -e frdm_k64f
+
+# Upload firmware for the specific environment
+$ pio run -e frdm_k64f --target upload
+
+# Clean build files
+$ pio run --target clean
+```
+>>>>>>> d9e611c (Validação do blink básico no LED verde onboard)
