@@ -5,47 +5,43 @@
 
 #define TPM_MODULE 1000
 
-uint16_t duty = TPM_MODULE / 2; // 50%
-
-// GPIO
-#define IN1_PIN 0
-#define IN2_PIN 1
-#define IN3_PIN 2
-#define IN4_PIN 3
-
-const struct device *gpio_dev = DEVICE_DT_GET(DT_NODELABEL(gpiob));
+// Duty cycles para cor laranja
+uint16_t duty_red   = 1000;  // 100%
+uint16_t duty_green = 400;   // ~40%
+uint16_t duty_blue  = 0;     // desligado
 
 int main(void)
 {
-    // Inicializa PWM (TPM0)
+    // -------------------------
+    // INIT PWM (RED - TPM2 CH0)
+    // -------------------------
+    pwm_tpm_Init(TPM2, TPM_PLLFLL, TPM_MODULE, TPM_CLK, PS_128, EDGE_PWM);
+    pwm_tpm_Ch_Init(TPM2, 0, TPM_PWM_H, GPIOB, 18);
+
+    // -------------------------
+    // INIT PWM (GREEN - TPM2 CH1)
+    // -------------------------
+    pwm_tpm_Ch_Init(TPM2, 1, TPM_PWM_H, GPIOB, 19);
+
+    // -------------------------
+    // INIT PWM (BLUE - TPM0 CH1)
+    // -------------------------
     pwm_tpm_Init(TPM0, TPM_PLLFLL, TPM_MODULE, TPM_CLK, PS_128, EDGE_PWM);
-
-    // ENA → PTD0
-    pwm_tpm_Ch_Init(TPM0, 0, TPM_PWM_H, GPIOD, 0);
-
-    // ENB → PTD1
     pwm_tpm_Ch_Init(TPM0, 1, TPM_PWM_H, GPIOD, 1);
 
-    // Define mesma velocidade para ambos
-    pwm_tpm_CnV(TPM0, 0, duty);
-    pwm_tpm_CnV(TPM0, 1, duty);
+    // -------------------------
+    // SET DUTY CYCLE (LARANJA)
+    // -------------------------
+    pwm_tpm_CnV(TPM2, 0, 0);
+pwm_tpm_CnV(TPM2, 1, 0);
+pwm_tpm_CnV(TPM0, 1, 1000);
+k_msleep(2000);
 
-    // Configura GPIO
-    gpio_pin_configure(gpio_dev, IN1_PIN, GPIO_OUTPUT);
-    gpio_pin_configure(gpio_dev, IN2_PIN, GPIO_OUTPUT);
-    gpio_pin_configure(gpio_dev, IN3_PIN, GPIO_OUTPUT);
-    gpio_pin_configure(gpio_dev, IN4_PIN, GPIO_OUTPUT);
 
     while (1)
     {
-        // Ambos motores para frente (linha reta)
-        gpio_pin_set(gpio_dev, IN1_PIN, 1);
-        gpio_pin_set(gpio_dev, IN2_PIN, 0);
-
-        gpio_pin_set(gpio_dev, IN3_PIN, 1);
-        gpio_pin_set(gpio_dev, IN4_PIN, 0);
-
-        
+        // LED permanece fixo (laranja constante)
+        k_msleep(1000);
     }
 
     return 0;
