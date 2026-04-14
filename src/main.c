@@ -3,7 +3,7 @@
 #include <zephyr/devicetree.h>
 #include <zephyr/drivers/gpio.h>
 
-#define SLEEP_TIME_MS 1000
+#define SLEEP_TIME_MS 2000
 
 /* LED da FRDM-KL25Z */
 #define LED0_NODE DT_ALIAS(led0)
