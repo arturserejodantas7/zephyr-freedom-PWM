@@ -1,36 +1,44 @@
 #include <zephyr/kernel.h>
-#include <pwm_z42.h>
+#include <zephyr/device.h>
+#include <zephyr/devicetree.h>
+#include <zephyr/drivers/gpio.h>
 
-#define TPM_MODULE 1000
+#define SLEEP_TIME_MS 1000
 
-int main(void)
+/* LED da FRDM-KL25Z */
+#define LED0_NODE DT_ALIAS(led0)
+
+#if DT_NODE_HAS_STATUS(LED0_NODE, okay)
+#define LED0 DT_GPIO_LABEL(LED0_NODE, gpios)
+#define PIN DT_GPIO_PIN(LED0_NODE, gpios)
+#define FLAGS DT_GPIO_FLAGS(LED0_NODE, gpios)
+#else
+#error "LED0 not defined in device tree"
+#endif
+
+static const struct device *gpio_dev;
+
+void main(void)
 {
-    // -------------------------
-    // INIT PWM
-    // -------------------------
-    pwm_tpm_Init(TPM2, TPM_PLLFLL, TPM_MODULE, TPM_CLK, PS_128, EDGE_PWM);
-    pwm_tpm_Init(TPM0, TPM_PLLFLL, TPM_MODULE, TPM_CLK, PS_128, EDGE_PWM);
+    int ret;
+    bool led_is_on = false;
 
-    pwm_tpm_Ch_Init(TPM2, 0, TPM_PWM_H, GPIOB, 18);
-    pwm_tpm_Ch_Init(TPM2, 1, TPM_PWM_H, GPIOB, 19);
-    pwm_tpm_Ch_Init(TPM0, 1, TPM_PWM_H, GPIOD, 1);
+    /* Pega o device GPIO correto (forma moderna) */
+    gpio_dev = DEVICE_DT_GET(DT_GPIO_CTLR(LED0_NODE, gpios));
 
-    while (1)
-    {
-        // 🔶 LIGA (SEU LARANJA REAL)
-        pwm_tpm_CnV(TPM2, 0, 0);
-        pwm_tpm_CnV(TPM2, 1, 0);
-        pwm_tpm_CnV(TPM0, 1, 1000);
-
-        k_msleep(1000);
-
-        // ⚫ DESLIGA (FORÇA LIMPEZA TOTAL DO PWM)
-        pwm_tpm_CnV(TPM2, 0, TPM_MODULE);
-        pwm_tpm_CnV(TPM2, 1, TPM_MODULE);
-        pwm_tpm_CnV(TPM0, 1, TPM_MODULE);
-
-        k_msleep(1000);
+    if (!device_is_ready(gpio_dev)) {
+        return;
     }
 
-    return 0;
+    /* Configura o pino */
+    ret = gpio_pin_configure(gpio_dev, PIN, GPIO_OUTPUT_ACTIVE | FLAGS);
+    if (ret < 0) {
+        return;
+    }
+
+    while (1) {
+        gpio_pin_set(gpio_dev, PIN, (int)led_is_on);
+        led_is_on = !led_is_on;
+        k_msleep(SLEEP_TIME_MS);
+    }
 }
