@@ -50,10 +50,12 @@ Antes de iniciar, certifique-se de ter configurado o ambiente seguindo os guias 
 **Resultado**: Sucesso. O RTOS gerenciou os tempos de 1s e 2s via k_msleep com precisão.
 
 | 1.1 | LED Verde (1s) | O LED onboard verde deve piscar com intervalo de 1000ms. |
+
 <img src="evidences/1.1 LED Verde (1s) (FOTO).jpg" width="300">
 <img src="evidences/1.1 LED Verde (1s) (GIF).GIF" width="300">
 
 | 1.2 | LED Verde (2s) | O LED onboard verde deve piscar com intervalo de 2000ms. |
+
 <img src="evidences/1.2 LED Verde (2s) (GIF).GIF" width="300">
 
 
@@ -73,10 +75,12 @@ Descrição: Teste de cor composta para LED laranja.
 Resultado: Sucesso. A biblioteca configurou o Duty Cycle corretamente e foi possível usar mais de um LED operando em PWM, ao mesmo tempo.
 
 | 2.1 | LED Laranja Fixo | O LED RGB deve exibir cor laranja constante (mix de PWM). |
+
 <img src="evidences/2.1 LED Laranja Fixo (FOTO).jpg" width="300">
 <img src="evidences/2.1 LED Laranja Fixo (GIF).GIF" width="300">
 
 | 2.2 | LED Laranja Piscante | O sinal PWM deve ser habilitado/desabilitado a cada 1s. |
+
 <img src="evidences/2.2 LED Laranja Piscante (GIF).GIF" width="300">
 
 ---
@@ -100,6 +104,7 @@ Resultado: Sucesso. A biblioteca configurou o Duty Cycle corretamente e foi poss
 **Resultado**: Sucesso. Torque e rotação máximos atingidos.
 
 | 3.1 | Movimento Independente | Os motores devem girar em velocidade máxima ao receber alimentação. |
+
 <img src="evidences/3.1 Movimento Independente.GIF" width="300">
 
 ---
@@ -123,9 +128,11 @@ Resultado: Sucesso. A biblioteca configurou o Duty Cycle corretamente e foi poss
 **Dois Motores**: Movimento sincronizado utilizando os canais 0 e 1 do TPM2 (PTB2 e PTB3).
 
 | 4.1 | Teste Motor Único | Apenas um motor deve variar velocidade usando um pino PWM. |
+
 <img src="evidences/4.1 Teste Motor Único.GIF" width="300">
 
 | 4.2 | Teste Bi-Motor | Ambos os motores operando em sincronia para movimento em linha reta. |
+
 <img src="evidences/4.2 Teste Bi-Motor.GIF" width="300">
 
 ---
