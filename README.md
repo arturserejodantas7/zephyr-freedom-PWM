@@ -49,7 +49,7 @@ Antes de iniciar, certifique-se de ter configurado o ambiente seguindo os guias 
 
 **Resultado**: Sucesso. O RTOS gerenciou os tempos de 1s e 2s via k_msleep com precisão.
 
-<img src="evidences/1.1 LED Verde (1s) (FOTO).HEIC" width="300">
+<img src="evidences/1.1 LED Verde (1s) (FOTO).jpg" width="300">
 <img src="evidences/1.1 LED Verde (1s) (GIF).GIF" width="300">
 
 
