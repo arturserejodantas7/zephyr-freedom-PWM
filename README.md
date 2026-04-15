@@ -49,8 +49,12 @@ Antes de iniciar, certifique-se de ter configurado o ambiente seguindo os guias 
 
 **Resultado**: Sucesso. O RTOS gerenciou os tempos de 1s e 2s via k_msleep com precisão.
 
+| 1.1 | LED Verde (1s) | O LED onboard verde deve piscar com intervalo de 1000ms. |
 <img src="evidences/1.1 LED Verde (1s) (FOTO).jpg" width="300">
 <img src="evidences/1.1 LED Verde (1s) (GIF).GIF" width="300">
+
+| 1.2 | LED Verde (2s) | O LED onboard verde deve piscar com intervalo de 2000ms. |
+<img src="evidences/1.2 LED Verde (2s) (GIF).GIF" width="300">
 
 
 ---
@@ -63,37 +67,17 @@ Antes de iniciar, certifique-se de ter configurado o ambiente seguindo os guias 
 |:---:|:---|:---|
 | 2.1 | LED Laranja Fixo | O LED RGB deve exibir cor laranja constante (mix de PWM). |
 | 2.2 | LED Laranja Piscante | O sinal PWM deve ser habilitado/desabilitado a cada 1s. |
-| 2.3 | **(Opcional)** LED Externo | LED conectado ao pino escolhido deve variar intensidade via PWM. |
 
 Descrição: Teste de cor composta para LED laranja.
 
 Resultado: Sucesso. A biblioteca configurou o Duty Cycle corretamente e foi possível usar mais de um LED operando em PWM, ao mesmo tempo.
 
-<img src="evidences/led laranja.jpeg" width="300">
+| 2.1 | LED Laranja Fixo | O LED RGB deve exibir cor laranja constante (mix de PWM). |
+<img src="evidences/2.1 LED Laranja Fixo (FOTO).jpg" width="300">
+<img src="evidences/2.1 LED Laranja Fixo (GIF).GIF" width="300">
 
----
-
-### 💡 Teste Opcional: Validação com LED Externo
-Este teste é recomendado caso os motores não girem posteriormente, servindo para isolar se o problema é o sinal lógico da Freedom ou a potência da Ponte H.
-O foco é validar se o sinal PWM está saindo corretamente do microcontrolador antes de usar na Ponte H. O LED é uma excelente ferramenta para confirmar visualmente o Duty Cycle suportado pelo PWM.
-
-* [Exemplo LED Externo](https://www.makerhero.com/blog/aprenda-a-piscar-um-led-com-arduino/?srsltid=AfmBOorP4sIpK4d2xrkZ4Wp7kBNDfmBs22xvHokEJPNuZa-ezOg2Y-B-)
-
-**Esquema de Ligação:**
-* **Anodo (Perna longa):** Conectar ao pino **PTB2** (ou pino PWM escolhido).
-* **Catodo (Perna curta):** Conectar ao **GND** da Freedom (através de um resistor de 220Ω a 1kΩ para proteção).
-
-| ID | Descrição do Teste | Resultado Esperado | Resultado Obtido |
-|:---|:---|:---|:---|
-| **2.3.1** | Variar Brilho (Fade) | O LED deve aumentar e diminuir a intensidade suavemente conforme o valor de `CnV` enviado. | |
-| **2.3.2** | Verificação de Nível | Com `CnV` em 1000 (Max), o LED deve brilhar intensamente; com 0, deve apagar (ou vice-versa, dependendo da lógica). | |
-
-**Por que fazer este teste?**
-1.  **Confirmação de MUX:** Garante que o pino físico foi corretamente configurado para saída PWM.
-2.  **Referência de Tensão:** Confirma que o GND está com a mesma referência.
-3.  **Depuração de Código:** Se o LED interno (onboard) funciona mas o externo não, o erro está na definição do pino ou no uso do registrador (Vide [Artigo Embarcados](https://embarcados.com.br/biblioteca-pwm-para-frdm-kl25z/)*).
-
-**Dica:** Se o LED externo funcionar mas o motor não, verifique o **GND comum**. O LED usa o GND da própria placa, enquanto o motor precisa que o GND da bateria "converse" com o GND da Freedom para entender o sinal PWM.
+| 2.2 | LED Laranja Piscante | O sinal PWM deve ser habilitado/desabilitado a cada 1s. |
+<img src="evidences/2.2 LED Laranja Piscante (GIF).GIF" width="300">
 
 ---
 
@@ -115,7 +99,8 @@ O foco é validar se o sinal PWM está saindo corretamente do microcontrolador a
 
 **Resultado**: Sucesso. Torque e rotação máximos atingidos.
 
-<img src="evidences/motor%20independente.gif" width="300">
+| 3.1 | Movimento Independente | Os motores devem girar em velocidade máxima ao receber alimentação. |
+<img src="evidences/3.1 Movimento Independente.GIF" width="300">
 
 ---
 
@@ -137,9 +122,11 @@ O foco é validar se o sinal PWM está saindo corretamente do microcontrolador a
 
 **Dois Motores**: Movimento sincronizado utilizando os canais 0 e 1 do TPM2 (PTB2 e PTB3).
 
-<img src="evidences/um motor integrado.gif" width="300">
+| 4.1 | Teste Motor Único | Apenas um motor deve variar velocidade usando um pino PWM. |
+<img src="evidences/4.1 Teste Motor Único.GIF" width="300">
 
-<img src="evidences/dois motores integrados.gif" width="300">
+| 4.2 | Teste Bi-Motor | Ambos os motores operando em sincronia para movimento em linha reta. |
+<img src="evidences/4.2 Teste Bi-Motor.GIF" width="300">
 
 ---
 
